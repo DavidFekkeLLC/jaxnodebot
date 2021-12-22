@@ -1,0 +1,28 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm ci
+    - shell: bash
+      run: |
+      pm2 stop jaxnodebot
+      pm2 delete jaxnodebot
+      rm -rf ~/apps/jaxnodebot
+      mkdir ~/apps/jaxnodebot
+      cp -r /* ~/apps/jaxnodebot
+      pm2 start ~/apps/jaxnodebot/index.js --name jaxnodebot
+      pm2 save

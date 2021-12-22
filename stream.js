@@ -63,18 +63,3 @@ function tweetNow(tweetTxt) {
       }
     });
 }
-
-// const userStream = Twitter.stream('user');
-
-// userStream.on('follow', function (event) {  
-//     console.log('Follow Event is running');
-//     //let name = event.source.name;
-//     var screenName = event.source.screen_name;
-//     try {
-// 	tweetNow('@' + screenName + ' Thank you for the following @jaxnode.');
-//     } catch (err) {
-//     	console.error(err);
-//     }
-// });
-
-require('http').createServer().listen(3000);
